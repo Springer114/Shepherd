@@ -12,7 +12,7 @@ namespace Shepherd.Controllers
 {
     public class HomeController : Controller
     {
-        private MyContext _context;
+        private readonly MyContext _context;
         
         public HomeController(MyContext context)
         {
