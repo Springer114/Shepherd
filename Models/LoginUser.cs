@@ -15,6 +15,5 @@ namespace Shepherd.Models
         [DataType(DataType.Password)]
         [Display(Name="Password")]
         public string LoginPassword { get; set; }
-
     }
 }
