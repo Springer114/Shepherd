@@ -41,8 +41,8 @@ namespace Shepherd
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
-            app.UseMvc();
             app.UseSession();
+            app.UseMvc();
         }
     }
 }

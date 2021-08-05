@@ -1,0 +1,8 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+@{ User CurrentUser = ViewBag.CurrentUser; }
+
+<div>
+    <h1>Welcome @ViewBag.CurrentUser.FirstName</h1>
+</div>
