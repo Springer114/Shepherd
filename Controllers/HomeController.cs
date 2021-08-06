@@ -48,8 +48,6 @@ namespace Shepherd.Controllers
             return View("Index");
         }
 
-        //Login the user
-
         [HttpPost("login")]
         public IActionResult Login(LoginUser userToLogin)
         {
@@ -70,8 +68,6 @@ namespace Shepherd.Controllers
             return RedirectToAction("Dashboard");
         }
 
-        //Logout the user
-
         [HttpGet("logout")]
         public IActionResult Logout()
         {
@@ -88,7 +84,67 @@ namespace Shepherd.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CurrentUser = _context.Users.First(u => u.UserId == userId);
+            ViewBag.AllProjects = _context.Projects
+                .Include(a => a.ProjectCreator)
+                .Include(p => p.ProjectTickets)
+                .OrderBy(a => a.CreatedAt)
+                .ToList();
             return View();
+        }
+
+        [HttpGet("project/new")]
+        public IActionResult NewProject()
+        {
+            return View();
+        }
+
+        [HttpPost("project/create")]
+        public IActionResult CreateProject(Project newProject)
+        {
+            if (ModelState.IsValid)
+            {
+                newProject.UserId = (int)HttpContext.Session.GetInt32("UserId");
+                _context.Add(newProject);
+                _context.SaveChanges();
+                return RedirectToAction("Dashboard");
+            }
+            else
+            {
+                return View("NewProject");
+            }
+        }
+
+        [HttpGet("project/{id}")]
+        public IActionResult ShowProject(int id)
+        {
+            ViewBag.CurrentProject = _context.Projects
+                .Include(c => c.ProjectCreator)
+                .Include(p => p.ProjectTickets)
+                .FirstOrDefault(a => a.ProjectId == id);
+            ViewBag.CurrentUser = _context.Users
+                .FirstOrDefault(u => u.UserId == (int)HttpContext.Session.GetInt32("UserId"));
+            return View("ShowProject");
+        }
+
+        [HttpPost("project/{projectId}/delete")]
+        public IActionResult DeleteProject(int ProjectId)
+        {
+            var ProjectToDelete = _context.Projects
+                .First(a => a.ProjectId == ProjectId);
+            _context.Remove(ProjectToDelete);
+            _context.SaveChanges();
+            return RedirectToAction("Dashboard");
+        }
+
+        public User GetCurrentUser()
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return null;
+            }
+            User CurrentUser = _context.Users.First(u => u.UserId == userId);
+            return CurrentUser;
         }
     }
 }
