@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Project";
+    Project item = ViewBag.CurrentProject;
+}
+
+@model Project
+
+<h2>@ViewBag.CurrentProject.ProjectName</h2>
+<div>
+    <form action="/project/@item.ProjectId/delete" method="post">
+        <button>Delete</button>
+    </form>
+</div>
+
+<h3>Project Creator:</h3> <p>@ViewBag.CurrentProject.ProjectCreator.FirstName</p>
+<h3>Description:</h3>
+<p>@ViewBag.CurrentProject.ProjectDescription</p>

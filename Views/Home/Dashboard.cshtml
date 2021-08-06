@@ -1,8 +1,24 @@
 @{
     ViewData["Title"] = "Dashboard";
+    User CurrentUser = ViewBag.CurrentUser;
 }
-@{ User CurrentUser = ViewBag.CurrentUser; }
 
-<div>
-    <h1>Welcome @ViewBag.CurrentUser.FirstName</h1>
-</div>
+<h1>Welcome @ViewBag.CurrentUser.FirstName</h1>
+<a href="project/new"><button>Add New Project</button></a>
+
+<table>
+    <thead>
+        <tr>
+            <th><h5>Projects</h5></th>
+            <th><h5>Tickets</h5></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Project item in ViewBag.AllProjects)
+        {
+            <tr>
+                <td><a href="/project/@item.ProjectId">@item.ProjectName</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
