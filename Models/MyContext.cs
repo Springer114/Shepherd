@@ -9,5 +9,6 @@ namespace Shepherd.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Assignee> Assignees { get; set; }
     }
 }

@@ -37,8 +37,8 @@ namespace Shepherd.Models
         [Display(Name="Confirm Password: ")]
         public string ConfirmPassword { get; set; }
 
-        public List<Project> CreatedProjects { get; set; }
-        public List<Ticket> CreatedTickets { get; set; }
+        public List<Project> Projects { get; set; }
+        public List<Assignee> Assignees { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
