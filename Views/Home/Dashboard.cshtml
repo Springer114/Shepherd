@@ -6,11 +6,13 @@
 <h1>Welcome @ViewBag.CurrentUser.FirstName</h1>
 <a href="project/new"><button>Add New Project</button></a>
 
-<table>
+<table class="table">
     <thead>
         <tr>
-            <th><h5>Projects</h5></th>
-            <th><h5>Tickets</h5></th>
+            <th scope="col"><h5>Projects</h5></th>
+            <th scope="col"><h5>Tickets</h5></th>
+            <th scope="col"><h5>Assignees</h5></th>
+            <th scope="col"><h5>Actions</h5></th>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +20,28 @@
         {
             <tr>
                 <td><a href="/project/@item.ProjectId">@item.ProjectName</a></td>
+                <td>@item.ProjectTickets.Count</td>
+                <td>@item.Assignees.Count</td>
+                <td>
+                        @if (ViewBag.CurrentUser.UserId == item.ProjectCreator.UserId)
+                        {
+                            <form action="/project/@item.ProjectId/delete" method="post">
+                                <button>Delete</button>
+                            </form>
+                        }
+                        else if (item.Assignees.Any(p => p.UserId == CurrentUser.UserId))
+                        {
+                            <form action="/project/@item.ProjectId/leave" method="post">
+                                <button>Leave</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form action="/project/@item.ProjectId/join" method="post">
+                                <button>Join</button>
+                            </form>
+                        }
+                    </td>
             </tr>
         }
     </tbody>
