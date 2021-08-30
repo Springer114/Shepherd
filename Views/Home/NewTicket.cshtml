@@ -1,6 +1,6 @@
 @{
     ViewData["Title"] = "New Ticket";
-}
+}   
 
 @model Ticket
 
@@ -8,7 +8,7 @@
 
 <p>Make a new Ticket</p>
 
-<form action="/ticket/create" method="post">
+<form action="project/{projectId}/ticket/create" method="post">
     <div class="row">
         <div class="col">
             <label asp-for="TicketTitle"></label>

@@ -21,7 +21,7 @@
             <tr>
                 <td><a href="/project/@item.ProjectId">@item.ProjectName</a></td>
                 <td>@item.ProjectTickets.Count</td>
-                <td>@item.Assignees.Count</td>
+                <td>@item.ProjectUsers.Count</td>
                 <td>
                         @if (ViewBag.CurrentUser.UserId == item.ProjectCreator.UserId)
                         {
@@ -29,7 +29,7 @@
                                 <button>Delete</button>
                             </form>
                         }
-                        else if (item.Assignees.Any(p => p.UserId == CurrentUser.UserId))
+                        else if (item.ProjectUsers.Any(p => p.UserId == CurrentUser.UserId))
                         {
                             <form action="/project/@item.ProjectId/leave" method="post">
                                 <button>Leave</button>

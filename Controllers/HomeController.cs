@@ -86,7 +86,7 @@ namespace Shepherd.Controllers
             ViewBag.CurrentUser = _context.Users.First(u => u.UserId == userId);
             ViewBag.AllProjects = _context.Projects
                 .Include(a => a.ProjectCreator)
-                .Include(t => t.Assignees)
+                .Include(t => t.ProjectUsers)
                 .Include(p => p.ProjectTickets)
                 .OrderBy(a => a.CreatedAt)
                 .ToList();
@@ -120,8 +120,8 @@ namespace Shepherd.Controllers
         {
             ViewBag.CurrentProject = _context.Projects
                 .Include(c => c.ProjectCreator)
-                .Include(p => p.Assignees)
-                .ThenInclude(a => a.UserAssignee)
+                .Include(p => p.ProjectUsers)
+                .ThenInclude(a => a.UserAssigned)
                 .FirstOrDefault(a => a.ProjectId == id);
             ViewBag.CurrentUser = _context.Users
                 .FirstOrDefault(u => u.UserId == (int)HttpContext.Session.GetInt32("UserId"));
@@ -142,12 +142,12 @@ namespace Shepherd.Controllers
         public IActionResult AddAssignee(int ProjectId)
         {
             var CurrentUser = GetCurrentUser();
-            var AssigneeToAdd = new Assignee
+            var UserToAdd = new UserProject
             {
                 UserId = GetCurrentUser().UserId,
                 ProjectId = ProjectId
             };
-            _context.Add(AssigneeToAdd);
+            _context.Add(UserToAdd);
             _context.SaveChanges();
             return RedirectToAction("Dashboard");
         }
@@ -156,28 +156,28 @@ namespace Shepherd.Controllers
         public IActionResult RemoveAssignee(int ProjectId)
         {
             var CurrentUser = GetCurrentUser();
-            var AssigneeToRemove = _context.Assignees
+            var UserToRemove = _context.UserProjects
                 .First(p => p.ProjectId == ProjectId && p.UserId == CurrentUser.UserId);
-            _context.Remove(AssigneeToRemove);
+            _context.Remove(UserToRemove);
             _context.SaveChanges();
             return RedirectToAction("Dashboard");
         }
 
-        [HttpGet("ticket/new")]
-        public IActionResult NewTicket()
+        [HttpGet("project/{projectId}/ticket/new")]
+        public IActionResult NewTicket(int ProjectId)
         {
             return View();
         }
 
-        [HttpPost("ticket/create")]
-        public IActionResult CreateTicket(Ticket newTicket)
+        [HttpPost("project/{projectId}/ticket/create")]
+        public IActionResult CreateTicket(int ProjectId, Ticket newTicket)
         {
             if (ModelState.IsValid)
             {
-                newTicket.AssigneeId = (int)HttpContext.Session.GetInt32("UserId");
+                newTicket.ProjectId = (int)HttpContext.Session.GetInt32("UserId");
                 _context.Add(newTicket);
                 _context.SaveChanges();
-                return RedirectToAction("Project");
+                return RedirectToAction("Dashboard");
             }
             else
             {
@@ -189,7 +189,7 @@ namespace Shepherd.Controllers
         public IActionResult Ticket(int id)
         {
             ViewBag.CurrentTicket = _context.Tickets
-                .Include(c => c.AssigneeId)
+                .Include(c => c.UsersOnTicket)
                 .FirstOrDefault(a => a.TicketId == id);
             ViewBag.CurrentUser = _context.Users
                 .FirstOrDefault(u => u.UserId == (int)HttpContext.Session.GetInt32("UserId"));
