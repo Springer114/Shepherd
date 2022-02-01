@@ -5,18 +5,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shepherd.Models
 {
-    public class Project
+    public class Pen
     {
         [Key]
-        public int ProjectId { get; set; }
-        [Required(ErrorMessage = "Please provide a project name.")]
-        public string ProjectName { get; set; }
+        public int PenId { get; set; }
+
+        [Required(ErrorMessage = "Please provide a pen name.")]
+        public string PenName { get; set; }
+
         [Required(ErrorMessage = "Please provide a description.")]
-        public string ProjectDescription { get; set; }
+        public string PenDescription { get; set; }
+
         public int UserId { get; set; }
-        public User ProjectCreator { get; set; }
-        public List<UserProject> ProjectUsers { get; set; }
-        public List<Ticket> ProjectTickets { get; set; }
+
+        public User Shepherd { get; set; }
+
+        public List<UserPen> Herders { get; set; }
+        
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }

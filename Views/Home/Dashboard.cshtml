@@ -3,41 +3,40 @@
     User CurrentUser = ViewBag.CurrentUser;
 }
 
-<h1>Welcome @ViewBag.CurrentUser.FirstName</h1>
-<a href="project/new"><button>Add New Project</button></a>
+<h2>Welcome @ViewBag.CurrentUser.FirstName</h2>
 
+<h4>Pens</h4>
+<a class="pen-button" href="pen/new"><button>Add New Pen</button></a>
 <table class="table">
     <thead>
         <tr>
-            <th scope="col"><h5>Projects</h5></th>
-            <th scope="col"><h5>Tickets</h5></th>
-            <th scope="col"><h5>Assignees</h5></th>
+            <th scope="col"><h5>Names</h5></th>
+            <th scope="col"><h5>Herders</h5></th>
             <th scope="col"><h5>Actions</h5></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (Project item in ViewBag.AllProjects)
+        @foreach (Pen item in ViewBag.AllPens)
         {
             <tr>
-                <td><a href="/project/@item.ProjectId">@item.ProjectName</a></td>
-                <td>@item.ProjectTickets.Count</td>
-                <td>@item.ProjectUsers.Count</td>
+                <td><a href="/project/@item.PenId">@item.PenName</a></td>
+                <td>@item.Herders.Count</td>
                 <td>
-                        @if (ViewBag.CurrentUser.UserId == item.ProjectCreator.UserId)
+                        @if (ViewBag.CurrentUser.UserId == item.Shepherd.UserId)
                         {
-                            <form action="/project/@item.ProjectId/delete" method="post">
+                            <form action="/project/@item.PenId/delete" method="post">
                                 <button>Delete</button>
                             </form>
                         }
-                        else if (item.ProjectUsers.Any(p => p.UserId == CurrentUser.UserId))
+                        else if (item.Herders.Any(p => p.UserId == CurrentUser.UserId))
                         {
-                            <form action="/project/@item.ProjectId/leave" method="post">
+                            <form action="/pen/@item.PenId/leave" method="post">
                                 <button>Leave</button>
                             </form>
                         }
                         else
                         {
-                            <form action="/project/@item.ProjectId/join" method="post">
+                            <form action="/pen/@item.PenId/join" method="post">
                                 <button>Join</button>
                             </form>
                         }
@@ -46,3 +45,5 @@
         }
     </tbody>
 </table>
+
+<h4>Sheep</h4>
