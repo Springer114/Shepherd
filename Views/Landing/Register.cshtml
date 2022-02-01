@@ -1,0 +1,33 @@
+@model User
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="landing-form registration">
+    <h3>Registration</h3>
+    <form action="/register" method="POST">
+        <div class="landing-form-input">
+            <input asp-for="FirstName" placeholder="First Name">
+        </div>
+            <span class="text-danger" asp-validation-for="FirstName"></span>
+        <div class="landing-form-input">
+            <input asp-for="LastName" placeholder="Last Name">
+        </div>
+            <span class="text-danger" asp-validation-for="LastName"></span>
+        <div class="landing-form-input">
+            <input asp-for="Email" placeholder="Email">
+        </div>
+            <span class="text-danger" asp-validation-for="Email"></span>
+        <div class="landing-form-input">
+            <input asp-for="Password" placeholder="Password">
+        </div>
+            <span class="text-danger" asp-validation-for="Password"></span>
+        <div class="landing-form-input">
+            <input asp-for="ConfirmPassword" placeholder="Confirm Password">
+        </div>
+            <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+        <div class="landing-form-input">
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</div>

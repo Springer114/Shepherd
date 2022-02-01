@@ -1,0 +1,22 @@
+﻿@model LoginUser
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="landing-form login">
+    <h3>Login</h3>
+    <form action="/login" method="POST">
+        <div class="landing-form-input">
+            <input asp-for="LoginEmail" placeholder="Email">
+        </div>
+        <div class="landing-form-input">
+            <input asp-for="LoginPassword" placeholder="Password">
+        </div>
+            <span class="text-danger" asp-validation-for="LoginEmail"></span>
+            <span class="text-danger" asp-validation-for="LoginPassword"></span>
+        <div class="landing-form-input">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</div>
+<partial name="Register"/>

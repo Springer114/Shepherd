@@ -9,11 +9,10 @@ namespace Shepherd.Models
 
         [Required(ErrorMessage="Please provide your email.")]
         [EmailAddress(ErrorMessage="Please provide a valid email.")]
-        public string Email { get; set; }
+        public string LoginEmail { get; set; }
 
         [Required(ErrorMessage="Invalid email or password.")]
         [DataType(DataType.Password)]
-        [Display(Name="Password")]
         public string LoginPassword { get; set; }
     }
 }
