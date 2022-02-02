@@ -77,6 +77,18 @@ namespace Shepherd.Controllers
             return RedirectToAction("Dashboard", "Home");
         }
 
+        [HttpPost("pen/{PenId}/leave")]
+        public IActionResult LeavePen(int PenId)
+        {
+            Flock toLeave = _context.Flocks
+                .FirstOrDefault(u => u.UserId == GetCurrentUser().UserId && u.PenId == PenId);
+
+            _context.Remove(toLeave);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard", "Home");
+        }
+
         public User GetCurrentUser()
         {
             int? userId = HttpContext.Session.GetInt32("UserId");
