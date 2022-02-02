@@ -5,13 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shepherd.Models
 {
-    public class UserPen
+    public class Flock
     {
         [Key]
-        public int UserPenId { get; set; }
+        public int FlockId { get; set; }
         public int UserId { get; set; }
-        public User UserAssigned { get; set; }
+        public User User { get; set; }
         public int PenId { get; set; }
-        public Pen PenAssigned { get; set; }
+        public Pen Pen { get; set; }
     }
 }

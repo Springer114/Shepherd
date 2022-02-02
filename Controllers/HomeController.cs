@@ -27,11 +27,11 @@ namespace Shepherd.Controllers
             {
                 return RedirectToAction("Index", "Landing");
             }
-            ViewBag.CurrentUser = _context.Users.First(u => u.UserId == userId);
+            ViewBag.CurrentUser = GetCurrentUser();
             ViewBag.AllPens = _context.Pens
-                .Include(a => a.Shepherd)
-                .Include(t => t.Herders)
-                .OrderBy(a => a.CreatedAt)
+                .Include(s => s.Shepherd)
+                .Include(h => h.Herders)
+                .OrderBy(c => c.CreatedAt)
                 .ToList();
             return View();
         }

@@ -32,7 +32,8 @@ namespace Shepherd.Models
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
-        public List<UserPen> Pens { get; set; }
+        public List<Flock> Flocks { get; set; }
+        
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }

@@ -3,7 +3,7 @@
     User CurrentUser = ViewBag.CurrentUser;
 }
 
-<h2>Welcome @ViewBag.CurrentUser.FirstName</h2>
+<h2>Welcome @CurrentUser.FirstName</h2>
 
 <h4>Pens</h4>
 <a class="pen-button" href="pen/new"><button>Add New Pen</button></a>
@@ -19,12 +19,12 @@
         @foreach (Pen item in ViewBag.AllPens)
         {
             <tr>
-                <td><a href="/project/@item.PenId">@item.PenName</a></td>
+                <td><a href="/pen/@item.PenId">@item.PenName</a></td>
                 <td>@item.Herders.Count</td>
                 <td>
                         @if (ViewBag.CurrentUser.UserId == item.Shepherd.UserId)
                         {
-                            <form action="/project/@item.PenId/delete" method="post">
+                            <form action="/pen/@item.PenId/delete" method="post">
                                 <button>Delete</button>
                             </form>
                         }
