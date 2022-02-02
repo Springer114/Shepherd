@@ -1,0 +1,19 @@
+@model Pen
+@{
+    ViewData["Title"] = "Pen";
+}
+
+<h2>@Model.PenName</h2>
+
+<h3>Shepherd:</h3> <p>@Model.Shepherd.FirstName</p>
+
+<h3>Herders:</h3>
+@foreach (var item in Model.Herders)
+{
+    <p>@item.User.FirstName</p>
+}
+
+<h3>Description:</h3>
+<p>@Model.PenDescription</p>
+
+<a href="/home">Home</a>

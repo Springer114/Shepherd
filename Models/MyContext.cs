@@ -8,6 +8,6 @@ namespace Shepherd.Models
         
         public DbSet<User> Users { get; set; }
         public DbSet<Pen> Pens { get; set; }
-        public DbSet<UserPen> UserPens { get; set; }
+        public DbSet<Flock> Flocks { get; set; }
     }
 }
