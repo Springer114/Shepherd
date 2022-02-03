@@ -7,8 +7,8 @@
 
 <h3>Shepherd:</h3> <p>@Model.Shepherd.FirstName</p>
 
-<h3>Herders:</h3>
-@foreach (var item in Model.Herders)
+<h3>Team Members:</h3>
+@foreach (var item in Model.TeamMembers)
 {
     <p>@item.User.FirstName</p>
 }

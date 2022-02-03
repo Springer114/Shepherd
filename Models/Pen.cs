@@ -20,7 +20,7 @@ namespace Shepherd.Models
 
         public User Shepherd { get; set; }
 
-        public List<Flock> Herders { get; set; }
+        public List<Team> TeamMembers { get; set; }
         
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;

@@ -30,7 +30,7 @@ namespace Shepherd.Controllers
             ViewBag.CurrentUser = GetCurrentUser();
             ViewBag.AllPens = _context.Pens
                 .Include(s => s.Shepherd)
-                .Include(h => h.Herders)
+                .Include(h => h.TeamMembers)
                 .OrderBy(c => c.CreatedAt)
                 .ToList();
             return View();
