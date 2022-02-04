@@ -57,7 +57,8 @@ namespace Shepherd.Controllers
 
             Pen singlePen = _context.Pens
                 .Include(s => s.Shepherd)
-                .Include(p => p.Herders)
+                .Include(t => t.Tickets)
+                .Include(p => p.TeamMembers)
                     .ThenInclude(u => u.User)
                 .FirstOrDefault(p => p.PenId == PenId);
             return View("SinglePen", singlePen);
@@ -66,7 +67,7 @@ namespace Shepherd.Controllers
         [HttpPost("pen/{PenId}/join")]
         public IActionResult JoinPen(int PenId)
         {
-            Flock toJoin = new Flock()
+            Team toJoin = new Team()
             {
                 UserId = GetCurrentUser().UserId, PenId = PenId
             };
@@ -80,7 +81,7 @@ namespace Shepherd.Controllers
         [HttpPost("pen/{PenId}/leave")]
         public IActionResult LeavePen(int PenId)
         {
-            Flock toLeave = _context.Flocks
+            Team toLeave = _context.Teams
                 .FirstOrDefault(u => u.UserId == GetCurrentUser().UserId && u.PenId == PenId);
 
             _context.Remove(toLeave);

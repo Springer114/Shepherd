@@ -10,8 +10,8 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col"><h5>Names</h5></th>
-            <th scope="col"><h5>Herders</h5></th>
+            <th scope="col"><h5>Pens</h5></th>
+            <th scope="col"><h5>Team Member Count</h5></th>
             <th scope="col"><h5>Actions</h5></th>
         </tr>
     </thead>
@@ -20,30 +20,70 @@
         {
             <tr>
                 <td><a href="/pen/@item.PenId">@item.PenName</a></td>
-                <td>@item.Herders.Count</td>
+                <td>@item.TeamMembers.Count</td>
                 <td>
-                        @if (ViewBag.CurrentUser.UserId == item.Shepherd.UserId)
-                        {
-                            <form action="/pen/@item.PenId/delete" method="post">
-                                <button>Delete</button>
-                            </form>
-                        }
-                        else if (item.Herders.Any(p => p.UserId == CurrentUser.UserId))
-                        {
-                            <form action="/pen/@item.PenId/leave" method="post">
-                                <button>Leave</button>
-                            </form>
-                        }
-                        else
-                        {
-                            <form action="/pen/@item.PenId/join" method="post">
-                                <button>Join</button>
-                            </form>
-                        }
-                    </td>
+                    @if (ViewBag.CurrentUser.UserId == item.Shepherd.UserId)
+                    {
+                        <form action="/pen/@item.PenId/delete" method="post">
+                            <button>Delete</button>
+                        </form>
+                    }
+                    else if (item.TeamMembers.Any(p => p.UserId == CurrentUser.UserId))
+                    {
+                        <form action="/pen/@item.PenId/leave" method="post">
+                            <button>Leave</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form action="/pen/@item.PenId/join" method="post">
+                            <button>Join</button>
+                        </form>
+                    }
+                </td>
             </tr>
         }
     </tbody>
 </table>
 
-<h4>Sheep</h4>
+<h4>Tickets</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"><h5>Tickets</h5></th>
+            <th scope="col"><h5>Pen</h5></th>
+            <th scope="col"><h5>Group Count</h5></th>
+            <th scope="col"><h5>Actions</h5></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Ticket item in ViewBag.AllUserTickets)
+        {
+            <tr>
+                <td><a href="/ticket/@item.TicketId">@item.TicketTitle</a></td>
+                <td>@item.HoldingPen.PenName</td>
+                <td>@item.GroupMembers.Count</td>
+                <td>
+                    @if (ViewBag.CurrentUser.UserId == item.Submitter.UserId)
+                    {
+                        <form action="/pen/@item.PenId/delete" method="post">
+                            <button>Delete</button>
+                        </form>
+                    }
+                    else if (item.GroupMembers.Any(p => p.UserId == CurrentUser.UserId))
+                    {
+                        <form action="/pen/@item.TicketId/leave" method="post">
+                            <button>Leave</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form action="/pen/@item.TicketId/join" method="post">
+                            <button>Join</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

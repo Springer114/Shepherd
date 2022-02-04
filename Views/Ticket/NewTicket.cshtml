@@ -1,0 +1,51 @@
+@model Ticket
+@{
+    ViewData["Title"] = "New Ticket";
+}
+
+<h1>New Ticket</h1>
+
+<form action="/@ViewBag.CurrentPen.PenId/ticket/create" method="post">
+    <div class="row">
+        <div class="col">
+            <label asp-for="TicketTitle"></label>
+        </div>
+        <div class="col">
+            <input asp-for="TicketTitle" class="form-control">
+            <span asp-validation-for="TicketTitle" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label asp-for="TicketDescription"></label>
+        </div>
+        <div class="col">
+            <textarea asp-for="TicketDescription" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label asp-for="TicketType"></label>
+        </div>
+        <div class="col">
+            <input asp-for="TicketType" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label asp-for="TicketPriority"></label>
+        </div>
+        <div class="col">
+            <input asp-for="TicketPriority" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label asp-for="TicketStatus"></label>
+        </div>
+        <div class="col">
+            <input asp-for="TicketStatus" class="form-control">
+        </div>
+    </div>
+    <button>Create Ticket</button>
+</form>

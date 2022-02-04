@@ -7,11 +7,18 @@
 
 <h3>Shepherd:</h3> <p>@Model.Shepherd.FirstName</p>
 
-<h3>Herders:</h3>
-@foreach (var item in Model.Herders)
+<h3>Team Members:</h3>
+@foreach (var item in Model.TeamMembers)
 {
     <p>@item.User.FirstName</p>
 }
 
 <h3>Description:</h3>
 <p>@Model.PenDescription</p>
+
+<h3>Tickets:</h3>
+<a href="/pen/@Model.PenId/ticket/new"><button>Add Ticket</button></a>
+@foreach (var item in Model.Tickets)
+{
+    <p>@item.TicketTitle</p>
+}
