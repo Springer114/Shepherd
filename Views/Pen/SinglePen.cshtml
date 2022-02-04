@@ -20,5 +20,5 @@
 <a href="/pen/@Model.PenId/ticket/new"><button>Add Ticket</button></a>
 @foreach (var item in Model.Tickets)
 {
-    <p>@item.TicketTitle</p>
+    <p><a href="/ticket/@item.TicketId">@item.TicketTitle</a></p>
 }

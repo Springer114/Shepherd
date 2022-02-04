@@ -1,6 +1,7 @@
 @model Ticket
 @{
     ViewData["Title"] = "Ticket";
+    User CurrentUser = ViewBag.CurrentUser;
 }
 
 <h2>@Model.TicketTitle</h2>

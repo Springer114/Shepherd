@@ -66,6 +66,32 @@ namespace Shepherd.Controllers
             return View("SingleTicket", singleTicket);
         }
 
+        [HttpPost("ticket/{TicketId}/join")]
+        public IActionResult JoinTicket(int TicketId)
+        {
+            Group toJoin = new Group()
+            {
+                UserId = GetCurrentUser().UserId, TicketId = TicketId
+            };
+
+            _context.Add(toJoin);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard", "Home");
+        }
+
+        [HttpPost("ticket/{TicketId}/leave")]
+        public IActionResult LeaveTicket(int TicketId)
+        {
+            Group toLeave = _context.Groups
+                .FirstOrDefault(u => u.UserId == GetCurrentUser().UserId && u.TicketId == TicketId);
+
+            _context.Remove(toLeave);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard", "Home");
+        }
+
         public User GetCurrentUser()
         {
             int? userId = HttpContext.Session.GetInt32("UserId");

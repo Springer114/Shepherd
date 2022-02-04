@@ -61,24 +61,24 @@
         {
             <tr>
                 <td><a href="/ticket/@item.TicketId">@item.TicketTitle</a></td>
-                <td>@item.HoldingPen.PenName</td>
+                <td><a href="/pen/@item.PenId">@item.HoldingPen.PenName</a></td>
                 <td>@item.GroupMembers.Count</td>
                 <td>
                     @if (ViewBag.CurrentUser.UserId == item.Submitter.UserId)
                     {
-                        <form action="/pen/@item.PenId/delete" method="post">
+                        <form action="/ticket/@item.TicketId/delete" method="post">
                             <button>Delete</button>
                         </form>
                     }
                     else if (item.GroupMembers.Any(p => p.UserId == CurrentUser.UserId))
                     {
-                        <form action="/pen/@item.TicketId/leave" method="post">
+                        <form action="/ticket/@item.TicketId/leave" method="post">
                             <button>Leave</button>
                         </form>
                     }
                     else
                     {
-                        <form action="/pen/@item.TicketId/join" method="post">
+                        <form action="/ticket/@item.TicketId/join" method="post">
                             <button>Join</button>
                         </form>
                     }
