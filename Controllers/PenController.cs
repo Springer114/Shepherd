@@ -55,6 +55,12 @@ namespace Shepherd.Controllers
                 return RedirectToAction("Index", "Landing");
             }
 
+            ViewBag.AllUserPens = _context.Pens
+                .Include(s => s.Shepherd)
+                .Include(h => h.TeamMembers)
+                .OrderBy(c => c.CreatedAt)
+                .ToList();
+
             Pen singlePen = _context.Pens
                 .Include(s => s.Shepherd)
                 .Include(t => t.Tickets)

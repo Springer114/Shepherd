@@ -28,7 +28,13 @@
             <label asp-for="TicketType"></label>
         </div>
         <div class="col">
-            <input asp-for="TicketType" class="form-control">
+            <select class="form-select" asp-for="TicketType">
+                <option selected>Open this select menu</option>
+                <option value="Task">Task</option>
+                <option value="Bug">Bug/Error</option>
+                <option value="Request">Request</option>
+                <option value="Test">Test</option>
+            </select>
         </div>
     </div>
     <div class="row">
@@ -36,7 +42,14 @@
             <label asp-for="TicketPriority"></label>
         </div>
         <div class="col">
-            <input asp-for="TicketPriority" class="form-control">
+            <select class="form-select" asp-for="TicketPriority">
+                <option selected>Open this select menu</option>
+                <option value="Highest">Highest</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+                <option value="Lowest">Lowest</option>
+            </select>
         </div>
     </div>
     <div class="row">
@@ -44,7 +57,14 @@
             <label asp-for="TicketStatus"></label>
         </div>
         <div class="col">
-            <input asp-for="TicketStatus" class="form-control">
+            <select class="form-select" asp-for="TicketStatus">
+                <option selected>Open this select menu</option>
+                <option value="New">New</option>
+                <option value="Open">Open</option>
+                <option value="InProgress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+                <option value="AIR">Additional Information Required</option>
+            </select>
         </div>
     </div>
     <button>Create Ticket</button>

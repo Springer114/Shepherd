@@ -1,6 +1,7 @@
 @model Pen
 @{
     ViewData["Title"] = "Pen";
+    User CurrentUser = ViewBag.CurrentUser;
 }
 
 <h2>@Model.PenName</h2>
@@ -21,4 +22,23 @@
 @foreach (var item in Model.Tickets)
 {
     <p><a href="/ticket/@item.TicketId">@item.TicketTitle</a></p>
+}
+
+@if (ViewBag.CurrentUser.UserId == Model.Shepherd.UserId)
+{
+    <form action="/pen/@Model.PenId/delete" method="post">
+        <button>Delete</button>
+    </form>
+}
+else if (Model.TeamMembers.Any(p => p.UserId == CurrentUser.UserId))
+{
+    <form action="/pen/@Model.PenId/leave" method="post">
+        <button>Leave</button>
+    </form>
+}
+else
+{
+    <form action="/pen/@Model.PenId/join" method="post">
+        <button>Join</button>
+    </form>
 }
