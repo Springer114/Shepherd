@@ -26,17 +26,30 @@
                 </div>
             </nav>
         </header>
+        <div class="side-nav">
+            <nav class="main-nav" role="navigation">
+                <ul class="unstyled list-hover-slide">
+                    <li><a href="/home">Dashboard</a></li>
+                    <li><a href="">Pen Management</a></li>
+                    <li><a href="">Pens</a></li>
+                    <li><a href="">Tickets</a></li>
+                </ul>
+            </nav>
+        </div>
         <div class="container">
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
         </div>
+        <div class="chat-container">
+            <h3>Chat</h3>
+        </div>
 
-        <footer class="border-top footer text-muted">
+        @* <footer class="border-top footer text-muted">
             <div class="container">
                 &copy; 2021 - Shepherd
             </div>
-        </footer>
+        </footer> *@
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
