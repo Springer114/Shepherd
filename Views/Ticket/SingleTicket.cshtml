@@ -1,0 +1,24 @@
+@model Ticket
+@{
+    ViewData["Title"] = "Ticket";
+    User CurrentUser = ViewBag.CurrentUser;
+}
+
+<h2>@Model.TicketTitle</h2>
+
+<h3>@Model.TicketType</h3>
+
+<h3>@Model.TicketPriority</h3>
+
+<h3>@Model.TicketStatus</h3>
+
+<h3>Submitter:</h3> <p>@Model.Submitter.FirstName</p>
+
+<h3>Users Assigned:</h3>
+@foreach (var item in Model.GroupMembers)
+{
+    <p>@item.User.FirstName</p>
+}
+
+<h3>Description:</h3>
+<p>@Model.TicketDescription</p>
