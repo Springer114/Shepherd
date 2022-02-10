@@ -31,6 +31,7 @@ namespace Shepherd.Controllers
             ViewBag.AllUserPens = _context.Pens
                 .Include(s => s.Shepherd)
                 .Include(h => h.TeamMembers)
+                .Include(t => t.Tickets)
                 .OrderBy(c => c.CreatedAt)
                 .ToList();
             ViewBag.AllUserTickets = _context.Tickets
