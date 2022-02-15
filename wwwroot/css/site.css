@@ -18,12 +18,20 @@ body {
     background: linear-gradient(0deg, rgba(242,237,233,1) 0%, rgba(150,114,68,1) 30%, rgba(27,28,23,1) 95%);
 }
 
+.container {
+    width: 70%;
+}
+
 h2, h3, h4, h5, td {
     color: var(--quinar);
 }
 
 h4 {
     margin: 20px 0;
+}
+
+h5 {
+    font-size: 14px;
 }
 
 td a, p a, li a {
@@ -79,6 +87,7 @@ a.nav-link {
     padding: 0;
     margin: 0;
 }
+
 .unstyled a {
     text-decoration: none;
 }
@@ -86,6 +95,7 @@ a.nav-link {
 .list-inline {
     overflow: hidden;
 }
+
 .list-inline li {
     float: left;
 }
@@ -103,15 +113,18 @@ a.nav-link {
 .main-nav ul {
     border-top: solid 1px var(--quinar);
 }
+
 .main-nav li {
     border-bottom: solid 1px var(--quinar);
 }
+
 .main-nav a {
     padding: 1.1em 0;
     color: var(--quinar);
     font: 400 1.125em "Source Sans Pro", Helvetica, Arial, sans-serif;
     text-align: center;
 }
+
 .main-nav a:hover {
     color: var(--quinar);
 }
@@ -120,12 +133,14 @@ a.nav-link {
     position: relative;
     overflow: hidden;
 }
+
 .list-hover-slide a {
     display: block;
     position: relative;
     z-index: 1;
     transition: 0.35s ease color;
 }
+
 .list-hover-slide a:before {
     content: "";
     display: block;
@@ -139,6 +154,7 @@ a.nav-link {
     background: var(--secondary);
     transition: 0.35s ease left;
 }
+
 .list-hover-slide a.is-current:before, .list-hover-slide a:hover:before {
     left: 0;
 }
@@ -161,6 +177,18 @@ a.nav-link {
     margin: 1rem 0 0 1rem;
     width: 30%;
     border-bottom: solid 1px var(--quinar);
+}
+
+/* ---------------------------------- Dashboard ---------------------------------- */
+
+.dashboard-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.table-container {
+    width: 45%;
 }
 
 /* ---------------------------------- Footer ---------------------------------- */
