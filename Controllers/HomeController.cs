@@ -45,7 +45,7 @@ namespace Shepherd.Controllers
 
             ViewBag.AllUserNotes = _context.Notes
                 .Include(n => n.NoteCreator)
-                .OrderByDescending(c => c.CreatedAt)
+                .OrderBy(c => c.CreatedAt)
                 .ToList();
 
             return View();

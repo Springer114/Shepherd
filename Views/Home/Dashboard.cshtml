@@ -7,34 +7,38 @@
 
 <h2>Welcome @CurrentUser.FirstName</h2>
 
-<div>
-    <form action="/note/create" method="post">
-        <textarea asp-for="NoteMessage" cols="40" rows="3" placeholder="Write a note for yourself"></textarea>
-        <button>Save Note</button>
-    </form>
-
-    <div>
-        <ul>
-            @foreach (Note item in ViewBag.AllUserNotes)
-            {
-                @if (CurrentUser.UserId == item.NoteCreator.UserId)
-                {
-                    <li>@item.NoteMessage</li>
-                }
-            }
-        </ul>
-    </div>
-</div>
-
 <div class="dashboard-content">
+
+    <div class="note-content">
+        <h4>Notes</h4>
+        <div class="note-section">
+            <ul>
+                @foreach (Note item in ViewBag.AllUserNotes)
+                {
+                    @if (CurrentUser.UserId == item.NoteCreator.UserId)
+                    {
+                        <li>@item.NoteMessage @item.CreatedAt</li>
+                        <form action="note/@item/delete" method="post">
+                            <button>Delete</button>
+                        </form>
+                    }
+                }
+            </ul>
+        </div>
+
+        <form action="/note/create" method="post">
+            <textarea asp-for="NoteMessage" cols="40" rows="3" placeholder="Write a note for yourself"></textarea>
+            <button>Save Note</button>
+        </form>
+    </div>
+
     <div class="table-container">
         <h4>Managing Projects</h4>
-        <a class="pen-button" href="pen/new"><button>Add New Pen</button></a>
+        <a class="pen-button" href="pen/new"><button>Add New Project</button></a>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col"><h5>Projects</h5></th>
-                    <th scope="col"><h5>Notifications</h5></th>
                     <th scope="col"><h5>Ticket Count</h5></th>
                     <th scope="col"><h5>Team Member Count</h5></th>
                 </tr>
@@ -46,7 +50,6 @@
                     {
                         <tr>
                             <td><a href="/pen/@item.PenId">@item.PenName</a></td>
-                            <td>Needs Work</td>
                             <td>@item.Tickets.Count</td>
                             <td>@item.TeamMembers.Count</td>
                         </tr>
@@ -62,7 +65,6 @@
             <thead>
                 <tr>
                     <th scope="col"><h5>Projects</h5></th>
-                    <th scope="col"><h5>Notifications</h5></th>
                     <th scope="col"><h5>Ticket Count</h5></th>
                     <th scope="col"><h5>Actions</h5></th>
                 </tr>
@@ -74,7 +76,6 @@
                     {
                         <tr>
                             <td><a href="/pen/@item.PenId">@item.PenName</a></td>
-                            <td>Needs work</td>
                             <td>@item.Tickets.Count</td>
                             <td>
                                 @if (ViewBag.CurrentUser.UserId == item.Shepherd.UserId)
@@ -104,15 +105,14 @@
     </div>
 
     <div class="table-container">
-        <h4>Tickets</h4>
+        <h4>Assigned to Me</h4>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col"><h5>Tickets</h5></th>
-                    <th scope="col"><h5>Project</h5></th>
-                    <th scope="col"><h5>Users Assigned</h5></th>
-                    <th scope="col"><h5>Notifications</h5></th>
-                    <th scope="col"><h5>Actions</h5></th>
+                    <th scope="col"><h5>Type</h5></th>
+                    <th scope="col"><h5>Belongs To</h5></th>
+                    <th scope="col"><h5>Title</h5></th>
+                    <th scope="col"><h5>Priority</h5></th>
                 </tr>
             </thead>
             <tbody>
@@ -121,35 +121,10 @@
                     @if (item.GroupMembers.Any(u => u.UserId == CurrentUser.UserId))
                     {
                         <tr>
-                            <td><a href="/ticket/@item.TicketId">@item.TicketTitle</a></td>
+                            <td>@item.TicketType</td>
                             <td><a href="/pen/@item.PenId">@item.HoldingPen.PenName</a></td>
-                            <td>
-                                @foreach (var user in item.GroupMembers)
-                                {
-                                    <a href="">@user.User.FirstName</a>
-                                }
-                            </td>
-                            <td>Needs work</td>
-                            <td>
-                                @if (ViewBag.CurrentUser.UserId == item.Submitter.UserId)
-                                {
-                                    <form action="/ticket/@item.TicketId/delete" method="post">
-                                        <button>Delete</button>
-                                    </form>
-                                }
-                                else if (item.GroupMembers.Any(p => p.UserId == CurrentUser.UserId))
-                                {
-                                    <form action="/ticket/@item.TicketId/leave" method="post">
-                                        <button>Leave</button>
-                                    </form>
-                                }
-                                else
-                                {
-                                    <form action="/ticket/@item.TicketId/join" method="post">
-                                        <button>Join</button>
-                                    </form>
-                                }
-                            </td>
+                            <td><a href="/ticket/@item.TicketId">@item.TicketTitle</a></td>
+                            <td>@item.TicketPriority</td>
                         </tr>
                     }
                 }
