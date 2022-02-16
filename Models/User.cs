@@ -43,5 +43,7 @@ namespace Shepherd.Models
         public List<Ticket> Tickets { get; set; }
 
         public List<Group> Groups { get; set; }
+
+        public List<Note> Notes { get; set; }
     }
 }
