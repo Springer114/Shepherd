@@ -1,4 +1,5 @@
 @model Pen
+
 @{
     ViewData["Title"] = "Pen";
     User CurrentUser = ViewBag.CurrentUser;
@@ -11,6 +12,9 @@
     <form action="/pen/@Model.PenId/delete" method="post">
         <button>Delete</button>
     </form>
+    <a href="/pen/@Model.PenId/edit">
+        <button>Edit</button>
+    </a>
 }
 @if (Model.TeamMembers.Any(u => u.UserId == CurrentUser.UserId))
 {

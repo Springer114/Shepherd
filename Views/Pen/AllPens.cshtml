@@ -1,0 +1,33 @@
+@model Pen
+
+@{
+    ViewData["Title"] = "All Pens";
+}
+
+<div>
+    <h4>All Pens</h4>
+    <a class="pen-button" href="pen/new"><button>Add New Pen</button></a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"><h5>Id</h5></th>
+                <th scope="col"><h5>Name</h5></th>
+                <th scope="col"><h5>Shepherd</h5></th>
+                <th scope="col"><h5>Team Members</h5></th>
+                <th scope="col"><h5>Tickets</h5></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Pen item in ViewBag.AllPens)
+            {
+                <tr>
+                    <td>@item.PenId</td>
+                    <td><a href="/pen/@item.PenId">@item.PenName</a></td>
+                    <td>@item.Shepherd.FirstName</td>
+                    <td>@item.TeamMembers.Count</td>
+                    <td>@item.Tickets.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

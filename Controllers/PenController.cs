@@ -46,6 +46,25 @@ namespace Shepherd.Controllers
             return View("NewPen");
         }
 
+        [HttpGet("pen/allpens")]
+        public IActionResult AllPens()
+        {
+            ViewBag.CurrentUser = GetCurrentUser();
+            if (ViewBag.CurrentUser == null)
+            {
+                return RedirectToAction("Index", "Landing");
+            }
+
+            ViewBag.AllPens = _context.Pens
+                .Include(s => s.Shepherd)
+                .Include(t => t.Tickets)
+                .Include(p => p.TeamMembers)
+                .OrderByDescending(c => c.CreatedAt)
+                .ToList();
+
+            return View();
+        }
+
         [HttpGet("pen/{PenId}")]
         public IActionResult SinglePen(int PenId)
         {
@@ -62,6 +81,41 @@ namespace Shepherd.Controllers
                     .ThenInclude(u => u.User)
                 .FirstOrDefault(p => p.PenId == PenId);
             return View("SinglePen", singlePen);
+        }
+
+        [HttpGet("pen/{PenId}/edit")]
+        public IActionResult EditPen(int PenId)
+        {
+            return View();
+        }
+
+        [HttpPost("pen/{PenId}/update")]
+        public IActionResult UpdatePen(int PenId, Pen UpdatedPen)
+        {
+            Pen PenToUpdate = _context.Pens
+                .FirstOrDefault(p => p.PenId == PenId);
+
+            if (ModelState.IsValid)
+            {
+                PenToUpdate.PenName = UpdatedPen.PenName;
+                PenToUpdate.PenDescription = UpdatedPen.PenDescription;
+                PenToUpdate.UpdatedAt = DateTime.Now;
+                _context.SaveChanges();
+                return RedirectToAction("Dashboard", "Home");
+            }
+
+            return View("SinglePen");
+        }
+
+        [HttpPost("pen/{PenId}/delete")]
+        public IActionResult DeletePen(int PenId)
+        {
+            Pen PenToDelete = _context.Pens
+                .SingleOrDefault(p => p.PenId == PenId);
+            _context.Pens.Remove(PenToDelete);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard", "Home");
         }
 
         [HttpPost("pen/{PenId}/join")]

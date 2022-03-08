@@ -1,0 +1,29 @@
+@model Pen
+
+@{
+    ViewData["Title"] = "Edit Pen";
+}
+
+<h1>Edit Pen</h1>
+
+<form asp-action="UpdatePen" asp-controller="Pen" method="post">
+    <div class="row">
+        <div class="col">
+            <label asp-for="PenName"></label>
+        </div>
+        <div class="col">
+            <input asp-for="PenName" class="form-control">
+            <span asp-validation-for="PenName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label asp-for="PenDescription"></label>
+        </div>
+        <div class="col">
+            <textarea asp-for="PenDescription" class="form-control"></textarea>
+            <span asp-validation-for="PenDescription" class="text-danger"></span>
+        </div>
+    </div>
+    <button>Update Pen</button>
+</form>
