@@ -1,0 +1,29 @@
+@model Ticket
+@{
+    ViewData["Title"] = "All User Tickets";
+}
+
+<div class="table-container">
+    <h4>My Tickets</h4>
+    <table class="table">
+        <thead>
+            <th scope="col"><h5>Title</h5></th>
+            <th scope="col"><h5>Type</h5></th>
+            <th scope="col"><h5>Priority</h5></th>
+            <th scope="col"><h5>Status</h5></th>
+            <th scope="col"><h5>Pen</h5></th>
+        </thead>
+        <tbody>
+            @foreach (Ticket item in ViewBag.UserTickets)
+            {
+                <tr>
+                    <td><a href="/ticket/@item.TicketId"></a>@item.TicketTitle</td>
+                    <td>@item.TicketType</td>
+                    <td>@item.TicketPriority</td>
+                    <td>@item.TicketStatus</td>
+                    <td><a href="/pen/@item.HoldingPen.PenId">@item.HoldingPen.PenName</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

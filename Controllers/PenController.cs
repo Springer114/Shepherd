@@ -59,7 +59,6 @@ namespace Shepherd.Controllers
                 .Include(s => s.Shepherd)
                 .Include(t => t.Tickets)
                 .Include(p => p.TeamMembers)
-                .OrderByDescending(c => c.CreatedAt)
                 .ToList();
 
             return View();

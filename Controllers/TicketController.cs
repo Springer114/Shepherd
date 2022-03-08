@@ -49,6 +49,15 @@ namespace Shepherd.Controllers
             return View("NewTicket");
         }
 
+        [HttpGet("ticket/AllUserTickets")]
+        public IActionResult AllUserTickets()
+        {
+            ViewBag.UserTickets = _context.Tickets
+                .Include(h => h.HoldingPen)
+                .ToList();
+            return View();
+        }
+
         [HttpGet("ticket/{TicketId}")]
         public IActionResult SingleTicket(int TicketId)
         {
