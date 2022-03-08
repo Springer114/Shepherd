@@ -6,6 +6,20 @@
     --quinar: #f2ede9;
 }
 
+.table-containers {
+    border: solid 1px var(--primary);
+    border-radius: .25rem;
+    margin: 2rem 0;
+    background-color: var(--quinar);
+}
+
+.table-containers h4 {
+    background-color: var(--tertiary);
+    border-bottom: solid 1px var(--primary);
+    border-radius: .25rem .25rem 0 0;
+    margin-top: 0;
+}
+
 html {
     font-size: 14px;
     position: relative;

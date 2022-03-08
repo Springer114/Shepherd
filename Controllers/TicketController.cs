@@ -52,8 +52,10 @@ namespace Shepherd.Controllers
         [HttpGet("ticket/AllUserTickets")]
         public IActionResult AllUserTickets()
         {
+            ViewBag.CurrentUser = GetCurrentUser();
             ViewBag.UserTickets = _context.Tickets
                 .Include(h => h.HoldingPen)
+                .Include(g => g.GroupMembers)
                 .ToList();
             return View();
         }
@@ -70,7 +72,6 @@ namespace Shepherd.Controllers
             Ticket singleTicket = _context.Tickets
                 .Include(s => s.Submitter)
                 .Include(p => p.GroupMembers)
-                    .ThenInclude(u => u.User)
                 .FirstOrDefault(p => p.TicketId ==TicketId);
             return View("SingleTicket", singleTicket);
         }

@@ -1,9 +1,10 @@
 @model Ticket
 @{
     ViewData["Title"] = "All User Tickets";
+    User CurrentUser = ViewBag.CurrentUser;
 }
 
-<div class="table-container">
+<div class="table-containers">
     <h4>My Tickets</h4>
     <table class="table">
         <thead>
@@ -12,6 +13,8 @@
             <th scope="col"><h5>Priority</h5></th>
             <th scope="col"><h5>Status</h5></th>
             <th scope="col"><h5>Pen</h5></th>
+            <th scope="col"><h5>Submitter</h5></th>
+            <th scope="col"><h5>Action</h5></th>
         </thead>
         <tbody>
             @foreach (Ticket item in ViewBag.UserTickets)
@@ -22,6 +25,21 @@
                     <td>@item.TicketPriority</td>
                     <td>@item.TicketStatus</td>
                     <td><a href="/pen/@item.HoldingPen.PenId">@item.HoldingPen.PenName</a></td>
+                    <td>@item.Submitter.FirstName</td>
+                    <td>
+                        @if (item.GroupMembers.Any(u => u.UserId == CurrentUser.UserId))
+                        {
+                            <form action="/ticket/@item.TicketId/leave" method="post">
+                                <button>Leave</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form action="/ticket/@item.TicketId/join" method="post">
+                                <button>Join</button>
+                            </form>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
