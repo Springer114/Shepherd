@@ -109,10 +109,10 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col"><h5>Type</h5></th>
-                    <th scope="col"><h5>Belongs To</h5></th>
                     <th scope="col"><h5>Title</h5></th>
+                    <th scope="col"><h5>Type</h5></th>
                     <th scope="col"><h5>Priority</h5></th>
+                    <th scope="col"><h5>Belongs To</h5></th>
                 </tr>
             </thead>
             <tbody>
@@ -121,10 +121,10 @@
                     @if (item.GroupMembers.Any(u => u.UserId == CurrentUser.UserId))
                     {
                         <tr>
-                            <td>@item.TicketType</td>
-                            <td><a href="/pen/@item.PenId">@item.HoldingPen.PenName</a></td>
                             <td><a href="/ticket/@item.TicketId">@item.TicketTitle</a></td>
+                            <td>@item.TicketType</td>
                             <td>@item.TicketPriority</td>
+                            <td><a href="/pen/@item.PenId">@item.HoldingPen.PenName</a></td>
                         </tr>
                     }
                 }
