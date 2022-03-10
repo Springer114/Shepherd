@@ -39,10 +39,41 @@
         <div class="container">
             <main role="main" class="pb-3">
                 @RenderBody()
+                @{
+                    User CurrentUser = ViewBag.CurrentUser;
+                }
             </main>
         </div>
         <div class="chat-container">
             <h3>Chat</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <input type="hidden" id="userInput" value="@CurrentUser.FirstName" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">Message: </div>
+                    <div class="col-4">
+                        <input type="text" id="messageInput" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <input type="button" id="sendButton" value="Send Message" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <hr />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <ul id="messagesList"></ul>
+                </div>
+            </div>
         </div>
 
         @* <footer class="border-top footer text-muted">
@@ -50,6 +81,8 @@
                 &copy; 2021 - Shepherd
             </div>
         </footer> *@
+        <script src="~/js/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/chat.js"></script>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>

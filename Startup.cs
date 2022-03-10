@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Shepherd.Models;
+using Shepherd.Hubs;
 
 namespace Shepherd
 {
@@ -27,6 +28,7 @@ namespace Shepherd
             services.AddDbContext<MyContext>(options => options.UseMySql(Configuration["DBInfo:ConnectionString"]));
             services.AddSession();
             services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +45,9 @@ namespace Shepherd
             app.UseStaticFiles();
             app.UseSession();
             app.UseMvc();
+            app.UseSignalR(route => {
+                route.MapHub<ChatHub>("/chatHub");
+            });
         }
     }
 }
