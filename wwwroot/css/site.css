@@ -28,8 +28,7 @@ html {
 
 body {
     margin-bottom: 60px;
-    background: rgb(242,237,233);
-    background: linear-gradient(0deg, rgba(242,237,233,1) 0%, rgba(150,114,68,1) 30%, rgba(27,28,23,1) 95%);
+    background: var(--secondary);
 }
 
 .container {

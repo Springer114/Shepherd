@@ -6,6 +6,28 @@
 
 <h2>@Model.TicketTitle</h2>
 
+@if (CurrentUser.UserId == Model.Submitter.UserId)
+{
+    <form action="/ticket/@Model.TicketId/delete" method="post">
+        <button>Delete</button>
+    </form>
+    <a href="/ticket/@Model.TicketId/edit">
+        <button>Edit</button>
+    </a>
+}
+@if (Model.GroupMembers.Any(u => u.UserId == CurrentUser.UserId))
+{
+    <form action="/ticket/@Model.TicketId/leave" method="post">
+        <button>Leave</button>
+    </form>
+}
+else
+{
+    <form action="/ticket/@Model.TicketId/join" method="post">
+        <button>Join</button>
+    </form>
+}
+
 <h3>@Model.TicketType</h3>
 
 <h3>@Model.TicketPriority</h3>

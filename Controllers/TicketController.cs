@@ -56,6 +56,7 @@ namespace Shepherd.Controllers
             ViewBag.UserTickets = _context.Tickets
                 .Include(h => h.HoldingPen)
                 .Include(g => g.GroupMembers)
+                .Include(s => s.Submitter)
                 .ToList();
             return View();
         }
@@ -71,9 +72,44 @@ namespace Shepherd.Controllers
 
             Ticket singleTicket = _context.Tickets
                 .Include(s => s.Submitter)
-                .Include(p => p.GroupMembers)
-                .FirstOrDefault(p => p.TicketId ==TicketId);
+                .Include(g => g.GroupMembers)
+                .FirstOrDefault(t => t.TicketId ==TicketId);
             return View("SingleTicket", singleTicket);
+        }
+
+        [HttpGet("ticket/{TicketId}/edit")]
+        public IActionResult EditTicket(int TicketId)
+        {
+            return View();
+        }
+
+        [HttpPost("ticket/{TicketId}/update")]
+        public IActionResult UpdateTicket(int TicketId, Ticket UpdatedTicket)
+        {
+            Ticket TicketToUpdate = _context.Tickets
+                .FirstOrDefault(t => t.TicketId == TicketId);
+
+            if (ModelState.IsValid)
+            {
+                TicketToUpdate.TicketTitle = UpdatedTicket.TicketTitle;
+                TicketToUpdate.TicketDescription = UpdatedTicket.TicketDescription;
+                TicketToUpdate.UpdatedAt = DateTime.Now;
+                _context.SaveChanges();
+                return RedirectToAction("Dashboard", "Home");
+            }
+
+            return View("SingleTicket");
+        }
+
+        [HttpPost("ticket/{TicketId}/delete")]
+        public IActionResult DeleteTicket(int TicketId)
+        {
+            Ticket TicketToDelete = _context.Tickets
+                .SingleOrDefault(t => t.TicketId == TicketId);
+            _context.Tickets.Remove(TicketToDelete);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard", "Home");
         }
 
         [HttpPost("ticket/{TicketId}/join")]
