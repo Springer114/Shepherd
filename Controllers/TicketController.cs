@@ -80,6 +80,7 @@ namespace Shepherd.Controllers
         [HttpGet("ticket/{TicketId}/edit")]
         public IActionResult EditTicket(int TicketId)
         {
+            ViewBag.CurrentUser = GetCurrentUser();
             return View();
         }
 

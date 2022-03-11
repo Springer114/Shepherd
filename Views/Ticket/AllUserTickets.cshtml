@@ -12,7 +12,7 @@
             <th scope="col"><h5>Type</h5></th>
             <th scope="col"><h5>Priority</h5></th>
             <th scope="col"><h5>Status</h5></th>
-            <th scope="col"><h5>Pen</h5></th>
+            <th scope="col"><h5>Project</h5></th>
             <th scope="col"><h5>Submitter</h5></th>
             <th scope="col"><h5>Action</h5></th>
         </thead>
@@ -22,7 +22,7 @@
                 @if (item.GroupMembers.Any(u => u.UserId == CurrentUser.UserId))
                 {
                     <tr>
-                        <td><a href="/ticket/@item.TicketId"></a>@item.TicketTitle</td>
+                        <td><a href="/ticket/@item.TicketId">@item.TicketTitle</a></td>
                         <td>@item.TicketType</td>
                         <td>@item.TicketPriority</td>
                         <td>@item.TicketStatus</td>

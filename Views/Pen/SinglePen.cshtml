@@ -29,9 +29,16 @@ else
     </form>
 }
 
-<h3>Shepherd:</h3> <p>@Model.Shepherd.FirstName</p>
+<h3>Manager:</h3> <p>@Model.Shepherd.FirstName</p>
 
 <h3>Team Members:</h3>
+@if (Model.Shepherd.UserId == CurrentUser.UserId)
+{
+    <form asp-action="AddMember" asp-controller="Pen">
+        <input type="text" placeholder="User Email" asp-for="UserId">
+        <button>Add</button>
+    </form>
+}
 @foreach (var item in Model.TeamMembers)
 {
     <p>@item.User.FirstName</p>

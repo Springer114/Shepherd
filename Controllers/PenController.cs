@@ -122,7 +122,8 @@ namespace Shepherd.Controllers
         {
             Team toJoin = new Team()
             {
-                UserId = GetCurrentUser().UserId, PenId = PenId
+                UserId = GetCurrentUser().UserId,
+                PenId = PenId
             };
 
             _context.Add(toJoin);
@@ -143,6 +144,43 @@ namespace Shepherd.Controllers
             return RedirectToAction("Dashboard", "Home");
         }
 
+        [HttpGet("pen/penmanagement")]
+        public IActionResult PenManagement()
+        {
+            ViewBag.CurrentUser = GetCurrentUser();
+            if (ViewBag.CurrentUser == null)
+            {
+                return RedirectToAction("Index", "Landing");
+            }
+            
+            ViewBag.AllPens = _context.Pens
+                .Where(s => s.Shepherd.UserId == GetCurrentUser().UserId)
+                .Include(t => t.Tickets)
+                .Include(m => m.TeamMembers)
+                    .ThenInclude(u => u.User)
+                .ToList();
+
+            return View();
+        }
+
+        [HttpPost("pen/{PenId}/addmember")]
+        public IActionResult AddMember(int PenId, string email)
+        {
+
+            User userToAdd = _context.Users.FirstOrDefault(u => u.Email == email);
+
+            Team toAdd = new Team()
+            {
+                UserId = userToAdd.UserId,
+                PenId = PenId
+            };
+
+            _context.Add(toAdd);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard", "Home");
+        }
+
         public User GetCurrentUser()
         {
             int? userId = HttpContext.Session.GetInt32("UserId");
@@ -152,6 +190,12 @@ namespace Shepherd.Controllers
             }
             User CurrentUser = _context.Users.First(u => u.UserId == userId);
             return CurrentUser;
+        }
+
+        public Pen GetCurrentPen(int PenId)
+        {
+            Pen CurrentPen = _context.Pens.First(p => p.PenId == PenId);
+            return CurrentPen;
         }
     }
 }

@@ -1,0 +1,72 @@
+@model Ticket
+@{
+    ViewData["Title"] = "Edit Ticket";
+    User CurrentUser = ViewBag.CurrentUser;
+}
+
+<h1>Edit Ticket</h1>
+
+<form asp-action="UpdateTicket" asp-controller="Ticket" method="post">
+    <div class="row">
+        <div class="col">
+            <label asp-for="TicketTitle"></label>
+        </div>
+        <div class="col">
+            <input asp-for="TicketTitle" class="form-control">
+            <span asp-validation-for="TicketTitle" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label asp-for="TicketDescription"></label>
+        </div>
+        <div class="col">
+            <textarea asp-for="TicketDescription" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label asp-for="TicketType"></label>
+        </div>
+        <div class="col">
+            <select class="form-select" asp-for="TicketType">
+                <option selected>Open this select menu</option>
+                <option value="Task">Task</option>
+                <option value="Bug">Bug/Error</option>
+                <option value="Request">Request</option>
+                <option value="Test">Test</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label asp-for="TicketPriority"></label>
+        </div>
+        <div class="col">
+            <select class="form-select" asp-for="TicketPriority">
+                <option selected>Open this select menu</option>
+                <option value="Highest">Highest</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+                <option value="Lowest">Lowest</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label asp-for="TicketStatus"></label>
+        </div>
+        <div class="col">
+            <select class="form-select" asp-for="TicketStatus">
+                <option selected>Open this select menu</option>
+                <option value="New">New</option>
+                <option value="Open">Open</option>
+                <option value="InProgress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+                <option value="AIR">Additional Information Required</option>
+            </select>
+        </div>
+    </div>
+    <button>Update Ticket</button>
+</form>
