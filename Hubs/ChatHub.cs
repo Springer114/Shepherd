@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.SignalR;
-using Shepherd.Models;
 using System.Threading.Tasks;
 
 namespace Shepherd.Hubs

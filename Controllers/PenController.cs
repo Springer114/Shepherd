@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shepherd.Models;
+using System;
+using System.Linq;
 
 namespace Shepherd.Controllers
 {
