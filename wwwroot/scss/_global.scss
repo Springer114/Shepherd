@@ -1,0 +1,35 @@
+body {
+    background-color: $primary-color;
+    color: $quinar-color;
+    font-size: 14px;
+    h4 {
+        font-size: 18px;
+    }
+}
+
+nav {
+    .navbar-brand {
+        font-size: 24px;
+        color: $secondary-color;
+        padding: 0;
+    }
+
+    .navbar-toggler-icon {
+        background-color: $quinar-color;
+        border: solid 1px $secondary-color;
+        border-radius: .25rem;
+    }
+
+    li {
+        a {
+            color: $secondary-color;
+        }
+    }
+
+}
+
+.chat-container {
+    .row {
+        width: 100%;
+    }
+}

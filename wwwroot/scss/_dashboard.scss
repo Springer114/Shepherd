@@ -1,0 +1,75 @@
+.dashboard-content {
+
+    .dashboard-greeting {
+        font-size: 20px;
+    }
+
+    .note-content {
+        background-color: $quinar-color;
+        color: $primary-color;
+        border-radius: .25rem;
+
+        h4 {
+            margin: .5rem;
+            padding: .5rem;
+            border-bottom: 1px solid $primary-color;
+        }
+
+        ul {
+            padding: 0;
+
+            li {
+                list-style: none;
+                margin: .5rem;
+
+                .note-options {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                    border-bottom: 1px dotted $primary-color;
+
+                    .note-date {
+                        margin: 0;
+                        font-style: italic;
+                    }
+
+                    .note-forms {
+                        display: flex;
+
+                        form {
+                            margin: .25rem;
+                            button {
+                                border-radius: .25rem;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .note-creation {
+            margin: .5rem;
+
+            form {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                button {
+                    margin: .25rem;
+                    border-radius: .25rem;
+                }
+            }
+
+            textarea {
+                width: 100%;
+            }
+        }
+    }
+
+    .table-container {
+        button {
+            border-radius: .25rem;
+        }
+    }
+}

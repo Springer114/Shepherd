@@ -1,0 +1,139 @@
+.table-container {
+    margin: 1em 0;
+    padding: .5em;
+    background-color: $secondary-color;
+
+    .table-header {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            max-height: 25px;
+        }
+    }
+
+    tr {
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        flex-direction: column;
+    }
+
+    th {
+        display: none;
+    }
+
+    td {
+        display: block;
+
+        &.accordion-content {
+            display: none;
+            overflow: hidden;
+
+            &:before {
+                content: attr(data-th)": ";
+                font-weight: bold;
+            }
+        }
+
+        &.accordion-content2 {
+            display: none;
+            overflow: hidden;
+
+            &:before {
+                content: attr(data-th)": ";
+                font-weight: bold;
+            }
+        }
+
+        &.accordion-content3 {
+            display: none;
+            overflow: hidden;
+
+            &:before {
+                content: attr(data-th)": ";
+                font-weight: bold;
+            }
+        }
+
+        &:first-child {
+            padding-top: .5em;
+        }
+
+        &:last-child {
+            padding-bottom: .5em;
+        }
+
+    }
+}
+
+@media (min-width: 768px) {
+    .table-container {
+        .table-header {
+            .accordion {
+                display: none;
+            }
+            .accordion2 {
+                display: none;
+            }
+            .accordion3 {
+                display: none;
+            }
+        }
+
+        table {
+            color: $quinar-color;
+            background-color: $secondary-color;
+            table-layout: fixed;
+            width: 100%;
+            border-radius: .25rem;
+
+            thead {
+                h5 {
+                    font-size: 16px;
+                }
+            }
+
+            tbody {
+                tr:nth-child(odd) {
+                    background-color: rgba($primary-color, .75);
+                }
+            }
+
+            tr {
+                display: flex;
+                flex-direction: row;
+            }
+
+            th, td {
+                padding: .25rem;
+                min-width: 12rem;
+                display: table-cell;
+            }
+
+            td {
+                &.accordion-content {
+                    display: table-cell;
+                    &:before {
+                        content: none;
+                    }
+                }
+
+                &.accordion-content2 {
+                    display: table-cell;
+                    &:before {
+                        content: none;
+                    }
+                }
+
+                &.accordion-content3 {
+                    display: table-cell;
+                    &:before {
+                        content: none;
+                    }
+                }
+            }
+        }
+
+    }
+
+}

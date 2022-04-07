@@ -1,4 +1,17 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(".accordion").click(function() {
+    $(".accordion-content").slideToggle("slow", function() {
 
-// Write your JavaScript code.
+    });
+});
+
+$(".accordion2").click(function() {
+    $(".accordion-content2").slideToggle("slow", function() {
+
+    });
+});
+
+$(".accordion3").click(function() {
+    $(".accordion-content3").slideToggle("slow", function() {
+
+    });
+});

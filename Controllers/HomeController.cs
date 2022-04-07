@@ -79,5 +79,16 @@ namespace Shepherd.Controllers
 
             return View("Dashboard");
         }
+
+        [HttpPost("note/{NoteId}/delete")]
+        public IActionResult DeleteNote(int NoteId)
+        {
+            Note NoteToDelete = _context.Notes
+                .SingleOrDefault(n => n.NoteId == NoteId);
+            _context.Notes.Remove(NoteToDelete);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard", "Home");
+        }
     }
 }

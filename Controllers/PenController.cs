@@ -82,6 +82,7 @@ namespace Shepherd.Controllers
         [HttpGet("pen/{PenId}/edit")]
         public IActionResult EditPen(int PenId)
         {
+            ViewBag.CurrentUser = GetCurrentUser();
             return View();
         }
 

@@ -1,0 +1,30 @@
+.landing-title {
+    text-align: center;
+}
+
+.landing-form {
+    border: solid 1px $quinar-color;
+    background-color: $tertiary-color;
+    text-align: center;
+    border-radius: .5rem;
+
+    .landing-form-input {
+        margin: .5rem;
+
+        input {
+            border-radius: .25rem;
+            width: 100%;
+        }
+
+    }
+}
+
+.landing-form.login {
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.landing-form.registration {
+    margin: 1rem;
+    padding: 1rem;
+}
