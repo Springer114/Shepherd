@@ -23,7 +23,7 @@ namespace Shepherd
         {
             services.AddDbContext<MyContext>(options => options.UseMySql(Configuration["DBInfo:ConnectionString"]));
             services.AddSession();
-            services.AddSignalR();
+            // services.AddSignalR();
             services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
@@ -40,9 +40,9 @@ namespace Shepherd
             }
             app.UseStaticFiles();
             app.UseSession();
-            app.UseSignalR(route => {
-                route.MapHub<ChatHub>("/chatHub");
-            });
+            // app.UseSignalR(route => {
+            //     route.MapHub<ChatHub>("/chatHub");
+            // });
             app.UseMvc();
         }
     }
