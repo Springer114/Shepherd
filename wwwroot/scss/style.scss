@@ -1,5 +1,253 @@
-@import 'config';
-@import 'global';
-@import 'landing';
-@import 'dashboard';
-@import 'accordion';
+body {
+  background-color: #1b1c17;
+  color: #f2ede9;
+  font-size: 14px;
+}
+
+body h4 {
+  font-size: 18px;
+}
+
+nav .navbar-brand {
+  font-size: 24px;
+  color: #967244;
+  padding: 0;
+}
+
+nav .navbar-toggler-icon {
+  background-color: #f2ede9;
+  border: solid 1px #967244;
+  border-radius: 0.25rem;
+}
+
+nav li a {
+  color: #967244;
+}
+
+.chat-container .row {
+  width: 100%;
+}
+
+.landing-title {
+  text-align: center;
+}
+
+.landing-form {
+  border: solid 1px #f2ede9;
+  background-color: #bb9b73;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+.landing-form .landing-form-input {
+  margin: 0.5rem;
+}
+
+.landing-form .landing-form-input input {
+  border-radius: 0.25rem;
+  width: 100%;
+}
+
+.landing-form.login {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.landing-form.registration {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.dashboard-content .dashboard-greeting {
+  font-size: 20px;
+}
+
+.dashboard-content .note-content {
+  background-color: #f2ede9;
+  color: #1b1c17;
+  border-radius: 0.25rem;
+}
+
+.dashboard-content .note-content h4 {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #1b1c17;
+}
+
+.dashboard-content .note-content ul {
+  padding: 0;
+}
+
+.dashboard-content .note-content ul li {
+  list-style: none;
+  margin: 0.5rem;
+}
+
+.dashboard-content .note-content ul li .note-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px dotted #1b1c17;
+}
+
+.dashboard-content .note-content ul li .note-options .note-date {
+  margin: 0;
+  font-style: italic;
+}
+
+.dashboard-content .note-content ul li .note-options .note-forms {
+  display: flex;
+}
+
+.dashboard-content .note-content ul li .note-options .note-forms form {
+  margin: 0.25rem;
+}
+
+.dashboard-content .note-content ul li .note-options .note-forms form button {
+  border-radius: 0.25rem;
+}
+
+.dashboard-content .note-content .note-creation {
+  margin: 0.5rem;
+}
+
+.dashboard-content .note-content .note-creation form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.dashboard-content .note-content .note-creation form button {
+  margin: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.dashboard-content .note-content .note-creation textarea {
+  width: 100%;
+}
+
+.dashboard-content .table-container button {
+  border-radius: 0.25rem;
+}
+
+.table-container {
+  margin: 1em 0;
+  padding: 0.5em;
+  background-color: #967244;
+}
+
+.table-container .table-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-container .table-header button {
+  max-height: 25px;
+}
+
+.table-container tr {
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-container th {
+  display: none;
+}
+
+.table-container td {
+  display: block;
+}
+
+.table-container td.accordion-content {
+  display: none;
+  overflow: hidden;
+}
+
+.table-container td.accordion-content:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+}
+
+.table-container td.accordion-content2 {
+  display: none;
+  overflow: hidden;
+}
+
+.table-container td.accordion-content2:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+}
+
+.table-container td.accordion-content3 {
+  display: none;
+  overflow: hidden;
+}
+
+.table-container td.accordion-content3:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+}
+
+.table-container td:first-child {
+  padding-top: 0.5em;
+}
+
+.table-container td:last-child {
+  padding-bottom: 0.5em;
+}
+
+@media (min-width: 768px) {
+  .table-container .table-header .accordion {
+    display: none;
+  }
+  .table-container .table-header .accordion2 {
+    display: none;
+  }
+  .table-container .table-header .accordion3 {
+    display: none;
+  }
+  .table-container table {
+    color: #f2ede9;
+    background-color: #967244;
+    table-layout: fixed;
+    width: 100%;
+    border-radius: 0.25rem;
+  }
+  .table-container table thead h5 {
+    font-size: 16px;
+  }
+  .table-container table tbody tr:nth-child(odd) {
+    background-color: rgba(27, 28, 23, 0.75);
+  }
+  .table-container table tr {
+    display: flex;
+    flex-direction: row;
+  }
+  .table-container table th, .table-container table td {
+    padding: 0.25rem;
+    min-width: 12rem;
+    display: table-cell;
+  }
+  .table-container table td.accordion-content {
+    display: table-cell;
+  }
+  .table-container table td.accordion-content:before {
+    content: none;
+  }
+  .table-container table td.accordion-content2 {
+    display: table-cell;
+  }
+  .table-container table td.accordion-content2:before {
+    content: none;
+  }
+  .table-container table td.accordion-content3 {
+    display: table-cell;
+  }
+  .table-container table td.accordion-content3:before {
+    content: none;
+  }
+}
+/*# sourceMappingURL=site.css.map */
+
+/*# sourceMappingURL=style.scss.map */

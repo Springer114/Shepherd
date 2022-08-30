@@ -33,10 +33,7 @@ git clone https://github.com/Springer114/Shepherd.git
 
 ### MySQL
 
-To check if it is installed:
-```bash
-mysql -u root -p
-```
+Database selected for this application.
 
 To install, visit [https://dev.mysql.com/downloads/installer/](https://dev.mysql.com/downloads/installer/)
 
@@ -100,3 +97,16 @@ dotnet run
 ```
 
 Open localhost:5000 in your browser and begin organizing your tasks and projects.
+
+Not required but is noteworthy that styles utilize Sass.
+
+Install Sass:
+```bash
+npm install -g sass
+```
+
+Then run:
+```bash
+sass --watch wwwroot/scss/style.scss wwwroot/css/site.css
+```
+This will compile the style.scss file to site.css file.

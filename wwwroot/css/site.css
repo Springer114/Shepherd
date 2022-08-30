@@ -3,6 +3,7 @@ body {
   color: #f2ede9;
   font-size: 14px;
 }
+
 body h4 {
   font-size: 18px;
 }
@@ -12,11 +13,13 @@ nav .navbar-brand {
   color: #967244;
   padding: 0;
 }
+
 nav .navbar-toggler-icon {
   background-color: #f2ede9;
   border: solid 1px #967244;
   border-radius: 0.25rem;
 }
+
 nav li a {
   color: #967244;
 }
@@ -35,9 +38,11 @@ nav li a {
   text-align: center;
   border-radius: 0.5rem;
 }
+
 .landing-form .landing-form-input {
   margin: 0.5rem;
 }
+
 .landing-form .landing-form-input input {
   border-radius: 0.25rem;
   width: 100%;
@@ -56,57 +61,71 @@ nav li a {
 .dashboard-content .dashboard-greeting {
   font-size: 20px;
 }
+
 .dashboard-content .note-content {
   background-color: #f2ede9;
   color: #1b1c17;
   border-radius: 0.25rem;
 }
+
 .dashboard-content .note-content h4 {
   margin: 0.5rem;
   padding: 0.5rem;
   border-bottom: 1px solid #1b1c17;
 }
+
 .dashboard-content .note-content ul {
   padding: 0;
 }
+
 .dashboard-content .note-content ul li {
   list-style: none;
   margin: 0.5rem;
 }
+
 .dashboard-content .note-content ul li .note-options {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   border-bottom: 1px dotted #1b1c17;
 }
+
 .dashboard-content .note-content ul li .note-options .note-date {
   margin: 0;
   font-style: italic;
 }
+
 .dashboard-content .note-content ul li .note-options .note-forms {
   display: flex;
 }
+
 .dashboard-content .note-content ul li .note-options .note-forms form {
   margin: 0.25rem;
 }
+
 .dashboard-content .note-content ul li .note-options .note-forms form button {
   border-radius: 0.25rem;
 }
+
 .dashboard-content .note-content .note-creation {
   margin: 0.5rem;
 }
+
 .dashboard-content .note-content .note-creation form {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
+
 .dashboard-content .note-content .note-creation form button {
   margin: 0.25rem;
   border-radius: 0.25rem;
 }
+
 .dashboard-content .note-content .note-creation textarea {
   width: 100%;
 }
+
 .dashboard-content .table-container button {
   border-radius: 0.25rem;
 }
@@ -116,51 +135,64 @@ nav li a {
   padding: 0.5em;
   background-color: #967244;
 }
+
 .table-container .table-header {
   display: flex;
   justify-content: space-between;
 }
+
 .table-container .table-header button {
   max-height: 25px;
 }
+
 .table-container tr {
   border-bottom: 1px solid #ddd;
   display: flex;
   flex-direction: column;
 }
+
 .table-container th {
   display: none;
 }
+
 .table-container td {
   display: block;
 }
+
 .table-container td.accordion-content {
   display: none;
   overflow: hidden;
 }
+
 .table-container td.accordion-content:before {
   content: attr(data-th) ": ";
   font-weight: bold;
 }
+
 .table-container td.accordion-content2 {
   display: none;
   overflow: hidden;
 }
+
 .table-container td.accordion-content2:before {
   content: attr(data-th) ": ";
   font-weight: bold;
 }
+
 .table-container td.accordion-content3 {
   display: none;
   overflow: hidden;
 }
+
 .table-container td.accordion-content3:before {
   content: attr(data-th) ": ";
   font-weight: bold;
 }
+
 .table-container td:first-child {
   padding-top: 0.5em;
 }
+
 .table-container td:last-child {
   padding-bottom: 0.5em;
 }
@@ -216,5 +248,7 @@ nav li a {
     content: none;
   }
 }
+/*# sourceMappingURL=site.css.map */
+/*# sourceMappingURL=style.scss.map */
 
 /*# sourceMappingURL=site.css.map */
