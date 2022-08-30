@@ -4,7 +4,7 @@ Shepherd is an issue tracking application used to organize tasks and projects.
 
 ## Installation
 
-This application uses C# and ASP.NET Core version 6.0.
+This application uses C# and ASP.NET Core version 3.1.
 
 To check your current version and a list of SDKs that are downloaded:
 ```bash
@@ -14,7 +14,16 @@ dotnet --version
 dotnet --list-sdks
 ```
 
-To Install version 6.0 go to this link [https://dotnet.microsoft.com/en-us/download](https://dotnet.microsoft.com/en-us/download)
+To Install version 3.1 go to this link [https://dotnet.microsoft.com/en-us/download/dotnet/3.1](https://dotnet.microsoft.com/en-us/download/dotnet/3.1)
+
+If you have a different version of .NET installed, be sure to have a global.json file on the project level and include:
+```bash
+{
+    "sdk": {
+        "version": "3.1.422"
+    }
+}
+```
 
 Clone the repository:
 
