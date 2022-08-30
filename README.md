@@ -98,6 +98,8 @@ dotnet run
 
 Open localhost:5000 in your browser and begin organizing your tasks and projects.
 
+### Sass
+
 Not required but is noteworthy that styles utilize Sass.
 
 Install Sass:
