@@ -4,17 +4,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Shepherd.Models
 {
-    public class Pen
+    public class Project
     {
         [Key]
 
-        public int PenId { get; set; }
+        public int ProjectId { get; set; }
 
-        [Required(ErrorMessage = "Please provide a pen name.")]
-        public string PenName { get; set; }
+        [Required(ErrorMessage = "Please provide a Project name.")]
+        public string ProjectName { get; set; }
 
         [Required(ErrorMessage = "Please provide a description.")]
-        public string PenDescription { get; set; }
+        public string ProjectDescription { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 

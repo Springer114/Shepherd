@@ -31,8 +31,8 @@ namespace Shepherd.Models
 
         public List<Group> GroupMembers { get; set; }
 
-        public int PenId { get; set; }
+        public int ProjectId { get; set; }
 
-        public Pen HoldingPen { get; set; }
+        public Project HoldingProject { get; set; }
     }
 }

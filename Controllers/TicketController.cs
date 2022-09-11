@@ -16,28 +16,28 @@ namespace Shepherd.Controllers
             _context = context;
         }
 
-        [HttpGet("pen/{PenId}/ticket/new")]
-        public IActionResult NewTicket(int PenId)
+        [HttpGet("Project/{ProjectId}/ticket/new")]
+        public IActionResult NewTicket(int ProjectId)
         {
             if (GetCurrentUser() == null)
             {
                 return RedirectToAction("Index", "Landing");
             }
 
-            ViewBag.CurrentPen = GetCurrentPen(PenId);
+            ViewBag.CurrentProject = GetCurrentProject(ProjectId);
             ViewBag.CurrentUser = GetCurrentUser();
             return View();
         }
 
-        [HttpPost("{PenId}/ticket/create")]
-        public IActionResult CreateTicket(Ticket newTicket, int PenId)
+        [HttpPost("{ProjectId}/ticket/create")]
+        public IActionResult CreateTicket(Ticket newTicket, int ProjectId)
         {
             User CurrentUser = GetCurrentUser();
-            Pen CurrentPen = GetCurrentPen(PenId);
+            Project CurrentProject = GetCurrentProject(ProjectId);
             if (ModelState.IsValid)
             {
                 newTicket.Submitter = CurrentUser;
-                newTicket.HoldingPen = CurrentPen;
+                newTicket.HoldingProject = CurrentProject;
                 _context.Add(newTicket);
                 _context.SaveChanges();
                 return RedirectToAction("Dashboard", "Home");
@@ -51,7 +51,7 @@ namespace Shepherd.Controllers
         {
             ViewBag.CurrentUser = GetCurrentUser();
             ViewBag.UserTickets = _context.Tickets
-                .Include(h => h.HoldingPen)
+                .Include(h => h.HoldingProject)
                 .Include(g => g.GroupMembers)
                 .Include(s => s.Submitter)
                 .ToList();
@@ -147,10 +147,10 @@ namespace Shepherd.Controllers
             return CurrentUser;
         }
 
-        public Pen GetCurrentPen(int PenId)
+        public Project GetCurrentProject(int ProjectId)
         {
-            Pen CurrentPen = _context.Pens.First(p => p.PenId == PenId);
-            return CurrentPen;
+            Project CurrentProject = _context.Projects.First(p => p.ProjectId == ProjectId);
+            return CurrentProject;
         }
     }
 }

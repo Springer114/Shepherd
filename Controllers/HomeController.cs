@@ -26,7 +26,7 @@ namespace Shepherd.Controllers
 
             ViewBag.CurrentUser = GetCurrentUser();
 
-            ViewBag.AllUserPens = _context.Pens
+            ViewBag.AllUserProjects = _context.Projects
                 .Include(s => s.Shepherd)
                 .Include(h => h.TeamMembers)
                 .Include(t => t.Tickets)
@@ -36,7 +36,7 @@ namespace Shepherd.Controllers
             ViewBag.AllUserTickets = _context.Tickets
                 .Include(s => s.Submitter)
                 .Include(g => g.GroupMembers)
-                .Include(h => h.HoldingPen)
+                .Include(h => h.HoldingProject)
                 .ToList();
 
             ViewBag.AllUserNotes = _context.Notes

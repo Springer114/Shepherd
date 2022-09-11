@@ -7,17 +7,17 @@ using System.Linq;
 
 namespace Shepherd.Controllers
 {
-    public class PenController : Controller
+    public class ProjectController : Controller
     {
         private readonly MyContext _context;
         
-        public PenController(MyContext context)
+        public ProjectController(MyContext context)
         {
             _context = context;
         }
 
-        [HttpGet("pen/new")]
-        public IActionResult NewPen()
+        [HttpGet("Project/new")]
+        public IActionResult NewProject()
         {
             if (GetCurrentUser() == null)
             {
@@ -28,23 +28,23 @@ namespace Shepherd.Controllers
             return View();
         }
 
-        [HttpPost("pen/create")]
-        public IActionResult CreatePen(Pen newPen)
+        [HttpPost("Project/create")]
+        public IActionResult CreateProject(Project newProject)
         {
             User CurrentUser = GetCurrentUser();
             if (ModelState.IsValid)
             {
-                newPen.Shepherd = CurrentUser;
-                _context.Add(newPen);
+                newProject.Shepherd = CurrentUser;
+                _context.Add(newProject);
                 _context.SaveChanges();
                 return RedirectToAction("Dashboard", "Home");
             }
 
-            return View("NewPen");
+            return View("NewProject");
         }
 
-        [HttpGet("pen/allpens")]
-        public IActionResult AllPens()
+        [HttpGet("Project/allProjects")]
+        public IActionResult AllProjects()
         {
             ViewBag.CurrentUser = GetCurrentUser();
             if (ViewBag.CurrentUser == null)
@@ -52,7 +52,7 @@ namespace Shepherd.Controllers
                 return RedirectToAction("Index", "Landing");
             }
 
-            ViewBag.AllPens = _context.Pens
+            ViewBag.AllProjects = _context.Projects
                 .Include(s => s.Shepherd)
                 .Include(t => t.Tickets)
                 .Include(p => p.TeamMembers)
@@ -61,8 +61,8 @@ namespace Shepherd.Controllers
             return View();
         }
 
-        [HttpGet("pen/{PenId}")]
-        public IActionResult SinglePen(int PenId)
+        [HttpGet("Project/{ProjectId}")]
+        public IActionResult SingleProject(int ProjectId)
         {
             ViewBag.CurrentUser = GetCurrentUser();
             if (ViewBag.CurrentUser == null)
@@ -70,58 +70,58 @@ namespace Shepherd.Controllers
                 return RedirectToAction("Index", "Landing");
             }
 
-            Pen singlePen = _context.Pens
+            Project singleProject = _context.Projects
                 .Include(s => s.Shepherd)
                 .Include(t => t.Tickets)
                 .Include(p => p.TeamMembers)
                     .ThenInclude(u => u.User)
-                .FirstOrDefault(p => p.PenId == PenId);
-            return View("SinglePen", singlePen);
+                .FirstOrDefault(p => p.ProjectId == ProjectId);
+            return View("SingleProject", singleProject);
         }
 
-        [HttpGet("pen/{PenId}/edit")]
-        public IActionResult EditPen(int PenId)
+        [HttpGet("Project/{ProjectId}/edit")]
+        public IActionResult EditProject(int ProjectId)
         {
             ViewBag.CurrentUser = GetCurrentUser();
             return View();
         }
 
-        [HttpPost("pen/{PenId}/update")]
-        public IActionResult UpdatePen(int PenId, Pen UpdatedPen)
+        [HttpPost("Project/{ProjectId}/update")]
+        public IActionResult UpdateProject(int ProjectId, Project UpdatedProject)
         {
-            Pen PenToUpdate = _context.Pens
-                .FirstOrDefault(p => p.PenId == PenId);
+            Project ProjectToUpdate = _context.Projects
+                .FirstOrDefault(p => p.ProjectId == ProjectId);
 
             if (ModelState.IsValid)
             {
-                PenToUpdate.PenName = UpdatedPen.PenName;
-                PenToUpdate.PenDescription = UpdatedPen.PenDescription;
-                PenToUpdate.UpdatedAt = DateTime.Now;
+                ProjectToUpdate.ProjectName = UpdatedProject.ProjectName;
+                ProjectToUpdate.ProjectDescription = UpdatedProject.ProjectDescription;
+                ProjectToUpdate.UpdatedAt = DateTime.Now;
                 _context.SaveChanges();
                 return RedirectToAction("Dashboard", "Home");
             }
 
-            return View("SinglePen");
+            return View("SingleProject");
         }
 
-        [HttpPost("pen/{PenId}/delete")]
-        public IActionResult DeletePen(int PenId)
+        [HttpPost("Project/{ProjectId}/delete")]
+        public IActionResult DeleteProject(int ProjectId)
         {
-            Pen PenToDelete = _context.Pens
-                .SingleOrDefault(p => p.PenId == PenId);
-            _context.Pens.Remove(PenToDelete);
+            Project ProjectToDelete = _context.Projects
+                .SingleOrDefault(p => p.ProjectId == ProjectId);
+            _context.Projects.Remove(ProjectToDelete);
             _context.SaveChanges();
 
             return RedirectToAction("Dashboard", "Home");
         }
 
-        [HttpPost("pen/{PenId}/join")]
-        public IActionResult JoinPen(int PenId)
+        [HttpPost("Project/{ProjectId}/join")]
+        public IActionResult JoinProject(int ProjectId)
         {
             Team toJoin = new Team()
             {
                 UserId = GetCurrentUser().UserId,
-                PenId = PenId
+                ProjectId = ProjectId
             };
 
             _context.Add(toJoin);
@@ -130,11 +130,11 @@ namespace Shepherd.Controllers
             return RedirectToAction("Dashboard", "Home");
         }
 
-        [HttpPost("pen/{PenId}/leave")]
-        public IActionResult LeavePen(int PenId)
+        [HttpPost("Project/{ProjectId}/leave")]
+        public IActionResult LeaveProject(int ProjectId)
         {
             Team toLeave = _context.Teams
-                .FirstOrDefault(u => u.UserId == GetCurrentUser().UserId && u.PenId == PenId);
+                .FirstOrDefault(u => u.UserId == GetCurrentUser().UserId && u.ProjectId == ProjectId);
 
             _context.Remove(toLeave);
             _context.SaveChanges();
@@ -142,8 +142,8 @@ namespace Shepherd.Controllers
             return RedirectToAction("Dashboard", "Home");
         }
 
-        [HttpGet("pen/penmanagement")]
-        public IActionResult PenManagement()
+        [HttpGet("Project/Projectmanagement")]
+        public IActionResult ProjectManagement()
         {
             ViewBag.CurrentUser = GetCurrentUser();
             if (ViewBag.CurrentUser == null)
@@ -151,7 +151,7 @@ namespace Shepherd.Controllers
                 return RedirectToAction("Index", "Landing");
             }
             
-            ViewBag.AllPens = _context.Pens
+            ViewBag.AllProjects = _context.Projects
                 .Where(s => s.Shepherd.UserId == GetCurrentUser().UserId)
                 .Include(t => t.Tickets)
                 .Include(m => m.TeamMembers)
@@ -161,8 +161,8 @@ namespace Shepherd.Controllers
             return View();
         }
 
-        [HttpPost("pen/{PenId}/addmember")]
-        public IActionResult AddMember(int PenId, string email)
+        [HttpPost("Project/{ProjectId}/addmember")]
+        public IActionResult AddMember(int ProjectId, string email)
         {
 
             User userToAdd = _context.Users.FirstOrDefault(u => u.Email == email);
@@ -170,7 +170,7 @@ namespace Shepherd.Controllers
             Team toAdd = new Team()
             {
                 UserId = userToAdd.UserId,
-                PenId = PenId
+                ProjectId = ProjectId
             };
 
             _context.Add(toAdd);
@@ -190,10 +190,10 @@ namespace Shepherd.Controllers
             return CurrentUser;
         }
 
-        public Pen GetCurrentPen(int PenId)
+        public Project GetCurrentProject(int ProjectId)
         {
-            Pen CurrentPen = _context.Pens.First(p => p.PenId == PenId);
-            return CurrentPen;
+            Project CurrentProject = _context.Projects.First(p => p.ProjectId == ProjectId);
+            return CurrentProject;
         }
     }
 }

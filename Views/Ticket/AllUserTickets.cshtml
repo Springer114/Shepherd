@@ -26,7 +26,7 @@
                         <td>@item.TicketType</td>
                         <td>@item.TicketPriority</td>
                         <td>@item.TicketStatus</td>
-                        <td><a href="/pen/@item.HoldingPen.PenId">@item.HoldingPen.PenName</a></td>
+                        <td><a href="/Project/@item.HoldingProject.ProjectId">@item.HoldingProject.ProjectName</a></td>
                         <td>@item.Submitter.FirstName</td>
                         <td>
                             @if (item.GroupMembers.Any(u => u.UserId == CurrentUser.UserId))

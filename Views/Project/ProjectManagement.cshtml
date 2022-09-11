@@ -1,4 +1,4 @@
-@model Pen
+@model Project
 
 @{
     ViewData["Title"] = "Project Management";
@@ -7,7 +7,7 @@
 
 <div class="table-containers">
     <h4>Project Management</h4>
-    <a class="pen-button" href="/pen/new"><button>Add New Project</button></a>
+    <a class="Project-button" href="/Project/new"><button>Add New Project</button></a>
     <table class="table">
         <thead>
             <tr>
@@ -18,12 +18,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Pen item in ViewBag.AllPens)
+            @foreach (Project item in ViewBag.AllProjects)
             {
                 @if (item.Shepherd.UserId == CurrentUser.UserId)
                 {
                     <tr>
-                        <td><a href="/pen/@item.PenId">@item.PenName</a></td>
+                        <td><a href="/Project/@item.ProjectId">@item.ProjectName</a></td>
                         <td>
                             @foreach (var user in item.TeamMembers)
                             {
@@ -43,22 +43,22 @@
                         <td>
                             @if (CurrentUser.UserId == item.Shepherd.UserId)
                             {
-                                <form action="/pen/@item.PenId/delete" method="post">
+                                <form action="/Project/@item.ProjectId/delete" method="post">
                                     <button>Delete</button>
                                 </form>
-                                <a href="/pen/@item.PenId/edit">
+                                <a href="/Project/@item.ProjectId/edit">
                                     <button>Edit</button>
                                 </a>
                             }
                             @if (item.TeamMembers.Any(u => u.UserId == CurrentUser.UserId))
                             {
-                                <form action="/pen/@item.PenId/leave" method="post">
+                                <form action="/Project/@item.ProjectId/leave" method="post">
                                     <button>Leave</button>
                                 </form>
                             }
                             else
                             {
-                                <form action="/pen/@item.PenId/join" method="post">
+                                <form action="/Project/@item.ProjectId/join" method="post">
                                     <button>Join</button>
                                 </form>
                             }

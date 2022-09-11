@@ -1,0 +1,29 @@
+@model Project
+
+@{
+    ViewData["Title"] = "Edit Project";
+}
+
+<h1>Edit Project</h1>
+
+<form asp-action="UpdateProject" asp-controller="Project" method="post">
+    <div class="row">
+        <div class="col">
+            <label asp-for="ProjectName"></label>
+        </div>
+        <div class="col">
+            <input asp-for="ProjectName" class="form-control">
+            <span asp-validation-for="ProjectName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label asp-for="ProjectDescription"></label>
+        </div>
+        <div class="col">
+            <textarea asp-for="ProjectDescription" class="form-control"></textarea>
+            <span asp-validation-for="ProjectDescription" class="text-danger"></span>
+        </div>
+    </div>
+    <button>Update Project</button>
+</form>

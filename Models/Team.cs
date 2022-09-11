@@ -8,7 +8,7 @@ namespace Shepherd.Models
         public int TeamId { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
-        public int PenId { get; set; }
-        public Pen Pen { get; set; }
+        public int ProjectId { get; set; }
+        public Project Project { get; set; }
     }
 }

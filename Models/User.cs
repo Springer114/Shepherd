@@ -36,7 +36,7 @@ namespace Shepherd.Models
 
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-        public List<Pen> Pens { get; set; }
+        public List<Project> Projects { get; set; }
 
         public List<Team> Teams { get; set; }
 

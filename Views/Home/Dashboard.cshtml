@@ -22,7 +22,7 @@
                                 <p class="note-date">@item.CreatedAt.ToString("g")</p>
                                 <div class="note-forms">
                                     <form action="">
-                                        <button><i class="fa fa-pencil text-warning"></i></button>
+                                        <button><i class="fa fa-Projectcil text-warning"></i></button>
                                     </form>
                                     <form action="note/@item.NoteId/delete" method="post">
                                         <button><i class="fa fa-eraser text-danger"></i></button>
@@ -47,7 +47,7 @@
     <div class="table-container">
         <div class="table-header">
             <h4>Managing</h4>
-            <a class="pen-button" href="pen/new"><button>Add New Project</button></a>
+            <a class="Project-button" href="Project/new"><button>Add New Project</button></a>
             <button class="accordion">+</button>
         </div>
         <table>
@@ -59,12 +59,12 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (Pen item in ViewBag.AllUserPens)
+                @foreach (Project item in ViewBag.AllUserProjects)
                 {
                     @if (CurrentUser.UserId == item.Shepherd.UserId)
                     {
                         <tr>
-                            <td><a href="/pen/@item.PenId">@item.PenName</a></td>
+                            <td><a href="/Project/@item.ProjectId">@item.ProjectName</a></td>
                             <td data-th="Ticket Count" class="accordion-content">@item.Tickets.Count</td>
                             <td data-th="Team Member Count" class="accordion-content">@item.TeamMembers.Count</td>
                         </tr>
@@ -88,12 +88,12 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (Pen item in ViewBag.AllUserPens)
+                @foreach (Project item in ViewBag.AllUserProjects)
                 {
                     @if (item.TeamMembers.Any(u => u.UserId == CurrentUser.UserId))
                     {
                         <tr>
-                            <td data-th="Project"><a href="/pen/@item.PenId">@item.PenName</a></td>
+                            <td data-th="Project"><a href="/Project/@item.ProjectId">@item.ProjectName</a></td>
                             <td data-th="Ticket Count" class="accordion-content2">@item.Tickets.Count</td>
                             <td data-th="Manager" class="accordion-content2">@item.Shepherd.FirstName</td>
                         </tr>
@@ -126,7 +126,7 @@
                             <td data-th="Title"><a href="/ticket/@item.TicketId">@item.TicketTitle</a></td>
                             <td data-th="Type" class="accordion-content3">@item.TicketType</td>
                             <td data-th="Priority" class="accordion-content3">@item.TicketPriority</td>
-                            <td data-th="Project" class="accordion-content3"><a href="/pen/@item.PenId">@item.HoldingPen.PenName</a></td>
+                            <td data-th="Project" class="accordion-content3"><a href="/Project/@item.ProjectId">@item.HoldingProject.ProjectName</a></td>
                         </tr>
                     }
                 }

@@ -1,13 +1,13 @@
-@model Pen
+@model Project
 
 @{
-    ViewData["Title"] = "All Pens";
+    ViewData["Title"] = "All Projects";
     User CurrentUser = ViewBag.CurrentUser;
 }
 
 <div class="table-containers">
     <h4>All Projects</h4>
-    <a class="pen-button" href="pen/new"><button>Add New Project</button></a>
+    <a class="Project-button" href="Project/new"><button>Add New Project</button></a>
     <table class="table">
         <thead>
             <tr>
@@ -19,23 +19,23 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Pen item in ViewBag.AllPens)
+            @foreach (Project item in ViewBag.AllProjects)
             {
                 <tr>
-                    <td><a href="/pen/@item.PenId">@item.PenName</a></td>
+                    <td><a href="/Project/@item.ProjectId">@item.ProjectName</a></td>
                     <td>@item.Shepherd.FirstName</td>
                     <td>@item.TeamMembers.Count</td>
                     <td>@item.Tickets.Count</td>
                     <td>
                         @if (item.TeamMembers.Any(u => u.UserId == CurrentUser.UserId))
                         {
-                            <form action="/pen/@item.PenId/leave" method="post">
+                            <form action="/Project/@item.ProjectId/leave" method="post">
                                 <button>Leave</button>
                             </form>
                         }
                         else
                         {
-                            <form action="/pen/@item.PenId/join" method="post">
+                            <form action="/Project/@item.ProjectId/join" method="post">
                                 <button>Join</button>
                             </form>
                         }
